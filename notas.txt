@@ -1,0 +1,78 @@
+// Configuración de los temas
+const topicEncendido = "domotica/luz/encendido";
+const topicApagado = "domotica/luz/apagado";
+const topicBrillo = "domotica/luz/brillo";
+const topicColor = "domotica/luz/color";
+
+// Configuración de los botones
+const btnEncender = document.getElementById("encender");
+const btnApagar = document.getElementById("apagar");
+const btnBrillo = document.getElementById("brillo");
+const btnColor = document.getElementById("color");
+
+// Evento de conexión exitosa
+client.onConnectionLost = onConnectionLost;
+
+// Evento de pérdida de conexión
+client.onMessageArrived = onMessageArrived;
+
+// Conectar al broker MQTT
+client.connect({ onSuccess: onConnect });
+
+ // Suscripción al tema
+ client.subscribe(topic, function (err) {
+    if (!err) {
+        console.log('Suscripción exitosa al tema: ' + topic);
+    }
+});
+
+// Función para enviar un mensaje MQTT
+function sendMqttMessage(topic, message) {
+    const mqttMessage = new Paho.MQTT.Message(message);
+    mqttMessage.destinationName = topic;
+    client.send(mqttMessage);
+}
+
+// Función de conexión exitosa
+function onConnect() {
+    console.log("Conectado al broker MQTT");
+
+
+    // Suscribirse a los temas de interés
+    client.subscribe(topicEncendido);
+    client.subscribe(topicApagado);
+    client.subscribe(topicBrillo);
+    client.subscribe(topicColor);
+
+    // Manejar eventos de los botones
+    btnEncender.addEventListener("click", () => {
+        sendMqttMessage(topicEncendido, "true");
+    });
+
+    btnApagar.addEventListener("click", () => {
+        sendMqttMessage(topicApagado, "true");
+    });
+
+    btnBrillo.addEventListener("click", () => {
+        const nuevoBrillo = prompt("Ingrese el nuevo valor de brillo:");
+        sendMqttMessage(topicBrillo, nuevoBrillo);
+    });
+
+    btnColor.addEventListener("click", () => {
+        const nuevoColor = prompt("Ingrese el nuevo valor de color:");
+        sendMqttMessage(topicColor, nuevoColor);
+    });
+}
+
+// Función para manejar la pérdida de conexión
+function onConnectionLost(responseObject) {
+    if (responseObject.errorCode !== 0) {
+        console.log("Conexión perdida: " + responseObject.errorMessage);
+    }
+}
+
+// Función para manejar la llegada de mensajes
+function onMessageArrived(message) {
+    console.log("Mensaje recibido: " + message.payloadString);
+    // Agrega aquí el código para manejar los mensajes MQTT recibidos
+}

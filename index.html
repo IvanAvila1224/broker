@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.2.7/mqtt.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr@5.5.1/dist/themes/classic.min.css">
+
+</head>
+<style>
+    h1 {
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+    h1 img {
+        float: left;
+        margin-right: 10px;
+    }
+</style>
+</head>
+<body>
+<h1>
+    <img src="./logo2.png" alt="Logo" width="130" height="50">
+    Control CBIX
+</h1>
+
+    <button class="encender" onclick="encenderLuz()">Encender Luz</button>
+    <button class="apagar" onclick="apagarLuz()">Apagar Luz</button>
+    <button class="cambiar" onclick="cambiarColor()">Color de la Luz</button>
+
+    <div>
+        <label for="brilloRange">Brillo:</label>
+        <input type="range" id="brilloRange" min="0" max="100" step="10" oninput="cambiarBrillo(this.value)">
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

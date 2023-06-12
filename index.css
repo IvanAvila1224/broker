@@ -1,0 +1,64 @@
+body {
+    background-image: url('./bgusuario.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right center;
+  }
+
+button {
+    background-color: #2635b9; 
+    color: white; 
+    padding: 5px 20px; 
+    font-size: 16px; 
+    border: none; 
+    border-radius: 15px; 
+    cursor: pointer; 
+  }
+  
+ 
+  button:hover {
+    opacity: 0.8; 
+  }
+  
+  button.encender {
+    background-color: green;
+    order: 3; 
+    font-size: 20px; 
+  }
+  
+  button.apagar {
+    background-color: red;
+    order: 1; 
+    font-size: 20px; 
+  }
+  
+  input[type="range"] {
+    position: absolute;
+    top: 170px;
+    left: 80px;
+    width: 250px;
+    height: 20px;
+    background-color: #1be72c00;
+    border-radius: 60px;
+    box-shadow: 0 0 5px rgba(10, 110, 15, 0.795); 
+    opacity: 0.9;
+  }
+  
+  label[for="brilloRange"] {
+    position: absolute;
+    top: 170px;
+    left: 20px;
+    font-family: Arial, sans-serif;
+    color: #ffffff; /* Cambia el color del texto a blanco */
+    font-size: 20px; /* Ajusta el tamaño del texto */
+  }
+  
+  button.cambiar {
+    background-color: purple;
+    order: 3; 
+    font-size: 20px; 
+  }
+  
+  h1 {
+    color: white;
+  }
